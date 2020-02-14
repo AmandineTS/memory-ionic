@@ -1,14 +1,35 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Memory
     </ion-title>
+    <!--3: Création du compte de paire-->
+    <ion-chip slot="end" color="secondary">{{foundPairs}}</ion-chip>
+    <!--4: Création du boutton paramétre-->
+    <ion-button slot="start" routerLink="/settings">
+      <ion-icon name="settings"></ion-icon>
+    </ion-button>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <!--1: Boucle pour afficher mes cartes par rapport au nbr de mes colonnes-->
+      <ion-col [size]="cardColumnSize" *ngFor="let card of cardDeck">
+        <!--..Si card est révélé alors je vais afficher card image SINON la question mark-->
+      <ion-img src="/assets/{{card.revealed? 'cards/' + card.image: 'question-mark.png'}}"
+               class="card" (click)="pickCard(card)"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <!--2: Création du bouton des que toutes les paires sont trouvées-->
+    <ion-button expand="block" color="success" *ngIf="foundPairs == numberOfCards" (click)="playAgain()">Rejouer</ion-button>
+  </ion-toolbar>
+</ion-footer>

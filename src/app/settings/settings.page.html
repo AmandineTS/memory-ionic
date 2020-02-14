@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>settings</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="stacked">Nombre de paires</ion-label>
+      <ion-range max="8" min="2" [(ngModel)]="settingsService.settings.numberOfCards" snaps="true"></ion-range>
+      <ion-chip slot="end">{{ settingsService.settings.numberOfCards }}</ion-chip>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Délai d'affichage</ion-label>
+      <ion-range max="3000" min="500" step="250" [(ngModel)]="settingsService.settings.delay" snaps="true"></ion-range>
+    <ion-chip slot="end">{{ (settingsService.settings.delay / 1000).toFixed(2) }}</ion-chip>
+    </ion-item>
+
+    <ion-radio-group [(ngModel)]="settingsService.settings.colNumber">
+      <ion-list-header>
+        <ion-label>
+          <h3>Nombre de colonnes</h3>
+        </ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-radio value="2" slot="start"></ion-radio>
+        <ion-label>2 colonnes</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-radio value="3" slot="start"></ion-radio>
+        <ion-label>3 colonnes</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-radio value="4" slot="start"></ion-radio>
+        <ion-label>4 colonnes</ion-label>
+      </ion-item>   
+    </ion-radio-group>    
+
+  </ion-list>
+
+</ion-content>
